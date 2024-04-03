@@ -9,6 +9,9 @@
 </head>
 <body>
     <div class="container">
+        <script>
+            window.bladeVariable = @json($uniqueId);
+        </script>
         <div id="app">
             <example-component></example-component>
         </div>

@@ -16,7 +16,8 @@ export default {
     mounted() {
         const dropzoneForm = this.$refs.dropzoneForm;
         const uploadUrl = "/upload-chunk";
-
+        const uniqueId = window.bladeVariable;
+        console.log(uniqueId);
         const dropzoneConfig = {
             url: uploadUrl,
             paramName: "file",
