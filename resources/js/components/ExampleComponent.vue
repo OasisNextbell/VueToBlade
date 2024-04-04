@@ -15,9 +15,9 @@ import "dropzone/dist/dropzone.css";
 export default {
     mounted() {
         const dropzoneForm = this.$refs.dropzoneForm;
-        const uploadUrl = "/upload-chunk";
         const uniqueId = window.bladeVariable;
-        console.log(uniqueId);
+        const uploadUrl = "/upload-chunk/" + uniqueId;
+
         const dropzoneConfig = {
             url: uploadUrl,
             paramName: "file",

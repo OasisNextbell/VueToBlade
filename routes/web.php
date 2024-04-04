@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::post('place/order', [OrderController::class, 'order'])->name('place.order');
-Route::post('/upload-chunk', [OrderController::class, 'uploadChunk']);
+Route::post('/upload-chunk/{id}', [OrderController::class, 'uploadChunk'])->withoutMiddleware([\App\Http\Middleware\VerifyCsrfToken::class]);;

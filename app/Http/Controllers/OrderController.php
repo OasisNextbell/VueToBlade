@@ -19,7 +19,7 @@ class OrderController extends Controller
         return view('orderImage', compact('uniqueId'));
 
     }
-    public function uploadChunk(Request $request)
+    public function uploadChunk(Request $request , $id)
     {
         $file = $request->file('file');
         $chunkIndex = $request->input('dzchunkindex');
@@ -30,11 +30,10 @@ class OrderController extends Controller
         $file->storeAs($tempDirectory, "{$chunkIndex}");
 
         if ($chunkIndex == $chunkTotal - 1) {
-            $uniqid = uniqid();
-            $filePath = "uploads/{$uniqid}.{$file->getClientOriginalExtension()}";
+            $filePath = "uploads/{$id}.{$file->getClientOriginalExtension()}";
             Storage::disk('local')->move("{$tempDirectory}", $filePath);
             $fileModel = new File();
-            $fileModel->unique_id = $uniqid;
+            $fileModel->unique_id = $id;
             $fileModel->filename = $file->getClientOriginalName();
             $fileModel->path = $filePath;
             $fileModel->save();
